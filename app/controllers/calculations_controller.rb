@@ -51,8 +51,8 @@ class CalculationsController < ApplicationController
     
         @min = params["min"].to_i
         @max = params["max"].to_i
-    
-        @value = rand(@max - @min)
+        
+        @value = rand(@min..@max)
     
         render("calculations/flexible_random_template.html.erb")
     
