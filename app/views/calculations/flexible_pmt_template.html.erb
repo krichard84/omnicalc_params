@@ -5,17 +5,16 @@
 <%= @years %> 
 
 year loan of 
-
-$<%= @principal %>, 
+    
+<%= number_to_currency(@principal, precision: 0) %>, 
 
 with an annual interest rate of 
 
-<%= @apr%> 
+<%= number_to_percentage(@apr, precision: 2) %>, 
 
-basis points, 
 
 requires a monthly payment of 
 
-<%= @payment %>.
+<%= number_to_currency(@payment, precision: 2) %>.
 
 </p>
