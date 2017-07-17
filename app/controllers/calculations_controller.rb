@@ -32,7 +32,7 @@ class CalculationsController < ApplicationController
         @principal = params["present_value"].to_f
        
         principal = @principal
-        m_interest_rate = (@apr/100)/12
+        m_interest_rate = ((@apr / 100) / 12)
         m_years = @years*12
         
         numerator = ((m_interest_rate) * (principal))
@@ -89,4 +89,53 @@ class CalculationsController < ApplicationController
         render("calculations/square_root_results_template.html.erb")
     end
     
+    #Part 2.3
+    
+    def payment_form
+        
+        render("calculations/payment_form_template.html.erb")
+    
+    end
+
+    def process_payment
+    
+        @user_apr = params["user_apr"].to_f
+        @user_years = params["user_years"].to_i
+        @user_pv = params["user_pv"].to_f
+        
+        principal = @user_pv
+        m_interest_rate = ((@user_apr / 100) / 12)
+        m_years = @user_years*12
+        
+        numerator = ((m_interest_rate) * (principal))
+        
+        denominator = (1 - ((1 + m_interest_rate)**(-1*m_years)))
+        
+        @payment = (numerator / denominator)
+        
+       render("calculations/payment_results_template.html.erb")  
+        
+    end
+
+    #Part 2.4
+    
+    def random_form
+       
+       render("calculations/random_form_template.html.erb")
+        
+    end
+
+    def process_random_form
+    
+        @min = params["user_min"].to_f
+        @max = params["user_max"].to_f
+        
+        
+        
+        @value = rand(@min..@max)
+    
+        render("calculations/random_results_template.html.erb") 
+    
+    end
+
 end
